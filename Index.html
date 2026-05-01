@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chetan Agarwal & Co. | Chartered Accountants | Jamnagar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b2545;
+  --navy2:#163d6e;
+  --blue:#1a6fb5;
+  --blue2:#2280cc;
+  --sky:#4fa8e8;
+  --sky2:#7dc4f5;
+  --green:#22c55e;
+  --orange:#f97316;
+  --gold:#d4a843;
+  --white:#ffffff;
+  --off:#f4f7fc;
+  --cream:#eaf1fb;
+  --text:#0b1f3a;
+  --text2:#3a5472;
+  --text3:#7a95b5;
+  --border:#d5e3f0;
+  --shadow:rgba(11,37,69,0.12);
+  --glow:rgba(26,111,181,0.2);
+  --tr:cubic-bezier(0.4,0,0.2,1);
+  --hero-h:100vh;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:#f0f4f8;}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+
+/* ─── NAV ─── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:72px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.4s ease;
+  background:transparent;
+}
+#nav.solid{
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(20px);
+  box-shadow:0 2px 20px var(--shadow);
+  height:64px;
+}
+#nav.solid .nav-link{color:var(--text2);}
+#nav.solid .nav-link:hover{color:var(--blue);}
+#nav.solid .nav-firm{color:var(--text);}
+#nav.solid .nav-sub{color:var(--blue);}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;cursor:pointer;}
+.nav-logo-img{width:42px;height:42px;flex-shrink:0;}
+.nav-firm{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--white);letter-spacing:0.3px;line-height:1.25;transition:color 0.3s;}
+.nav-sub{font-size:9px;letter-spacing:2.5px;color:rgba(255,255,255,0.65);text-transform:uppercase;font-weight:500;margin-top:1px;transition:color 0.3s;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-link{
+  font-size:11.5px;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,0.85);text-decoration:none;
+  padding:9px 13px;border-radius:6px;
+  transition:all 0.25s ease;font-weight:600;
+}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,0.1);}
+.nav-cta{
+  padding:10px 22px!important;
+  background:var(--blue)!important;
+  color:var(--white)!important;
+  border-radius:6px!important;
+  transition:all 0.3s ease!important;
+  box-shadow:0 4px 14px var(--glow);
+}
+.nav-cta:hover{background:var(--navy)!important;transform:translateY(-1px);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s;}
+#nav.solid .ham span{background:var(--text);}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{
+  display:none;position:fixed;top:64px;inset-inline:0;bottom:0;
+  background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);
+  z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--text);text-decoration:none;transition:color 0.3s;}
+.mob-menu a:hover{color:var(--blue);}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:var(--hero-h);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  background:var(--navy);
+}
+/* Hero slideshow */
+.hero-slides{position:absolute;inset:0;z-index:0;}
+.hero-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center top;background-repeat:no-repeat;
+  opacity:0;transition:opacity 1.2s ease;
+}
+.hero-slide.active{opacity:1;}
+.hero-slide-video{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;}
+/* Overlay gradient over slides */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    105deg,
+    rgba(11,37,69,0.82) 0%,
+    rgba(11,37,69,0.65) 40%,
+    rgba(11,37,69,0.4) 70%,
+    rgba(11,37,69,0.25) 100%
+  );
+}
+/* Bottom gradient for text readability */
+.hero-bottom-grad{
+  position:absolute;bottom:0;left:0;right:0;height:220px;z-index:2;
+  background:linear-gradient(to top, rgba(11,37,69,0.7) 0%, transparent 100%);
+}
+/* No-slide fallback: geometric background */
+.hero-fallback{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 45%,var(--blue) 100%);
+}
+.hero-fallback .hfb-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.hero-fallback .hfb-circle1{
+  position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,111,181,0.25) 0%,transparent 70%);
+  right:-100px;top:-100px;
+}
+.hero-fallback .hfb-circle2{
+  position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,168,232,0.15) 0%,transparent 70%);
+  left:10%;bottom:10%;
+}
+
+/* Hero content */
+.hero-content{
+  position:relative;z-index:3;
+  flex:1;display:flex;align-items:flex-end;
+  max-width:1260px;margin:0 auto;width:100%;
+  padding:130px 5% 80px;
+}
+.hero-left{max-width:680px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 18px;margin-bottom:24px;
+  border:1px solid rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.07);
+  border-radius:30px;backdrop-filter:blur(6px);
+}
+.hero-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:hDot 2s ease-in-out infinite;}
+@keyframes hDot{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5);}50%{box-shadow:0 0 0 7px rgba(74,222,128,0);}}
+.hero-eyebrow-text{font-size:11px;letter-spacing:2.5px;color:rgba(255,255,255,0.75);text-transform:uppercase;font-weight:600;}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,5.5vw,72px);
+  font-weight:800;line-height:1.1;
+  color:var(--white);margin-bottom:10px;
+}
+.hero-title .ht-em{
+  font-style:italic;
+  background:linear-gradient(120deg,var(--sky2),var(--sky),#a8d5f9);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-tagline{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(13px,1.5vw,16px);
+  color:rgba(255,255,255,0.62);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:22px;font-weight:500;
+}
+.hero-desc{
+  font-size:15px;color:rgba(255,255,255,0.68);
+  line-height:1.85;max-width:520px;margin-bottom:36px;font-weight:300;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 34px;background:var(--white);
+  color:var(--navy);font-size:12px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  border-radius:6px;text-decoration:none;
+  transition:all 0.3s ease;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  box-shadow:0 8px 28px rgba(0,0,0,0.22);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,0.3);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 34px;background:transparent;
+  color:var(--white);font-size:12px;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  border-radius:6px;text-decoration:none;
+  transition:all 0.3s ease;
+  border:1.5px solid rgba(255,255,255,0.35);
+  font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;
+}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.12);padding-top:28px;}
+.hs{padding:0 44px 0 0;border-right:1px solid rgba(255,255,255,0.12);margin-right:44px;}
+.hs:last-child{border-right:none;padding-right:0;margin-right:0;}
+.hs-n{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,4.5vw,56px);font-weight:700;
+  color:var(--white);line-height:1;margin-bottom:4px;
+}
+.hs-suf{font-size:0.48em;color:var(--sky2);}
+.hs-l{font-size:10px;color:rgba(255,255,255,0.42);letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+
+/* Hero read more link on slide */
+.hero-slide-link{
+  position:absolute;bottom:28px;right:5%;z-index:4;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 20px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:30px;
+  color:rgba(255,255,255,0.85);
+  font-size:11px;font-weight:600;letter-spacing:1px;
+  text-decoration:none;text-transform:uppercase;
+  transition:all 0.3s;
+}
+.hero-slide-link:hover{background:rgba(255,255,255,0.22);color:var(--white);}
+
+/* Hero slider controls */
+.hero-controls{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:5;display:flex;align-items:center;gap:10px;
+}
+.hc-dot{
+  width:24px;height:3px;background:rgba(255,255,255,0.3);
+  border-radius:2px;cursor:pointer;transition:all 0.3s;
+}
+.hc-dot.active{width:40px;background:var(--white);}
+
+/* Scroll indicator */
+.scroll-ind{
+  position:absolute;bottom:36px;right:44px;z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:rgba(255,255,255,0.38);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+}
+.scroll-mouse{width:20px;height:32px;border:1.5px solid rgba(255,255,255,0.22);border-radius:10px;display:flex;justify-content:center;padding-top:5px;}
+.scroll-wheel{width:2px;height:5px;background:var(--white);border-radius:2px;animation:sw 1.5s ease-in-out infinite;}
+@keyframes sw{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(10px);}}
+
+/* ─── TICKER BAND ─── */
+.ticker-band{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:14px 0;overflow:hidden;position:relative;z-index:10;
+}
+.ticker-inner{display:flex;animation:ticker 30s linear infinite;white-space:nowrap;}
+.ticker-inner span{
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);font-weight:500;
+  padding:0 32px;
+}
+.ticker-inner span.accent{color:var(--sky2);}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ─── SECTION COMMON ─── */
+.sp{padding:100px 5%;}
+.sp-sm{padding:70px 5%;}
+.bg-white{background:var(--white);}
+.bg-off{background:var(--off);}
+.bg-navy{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,var(--blue) 100%);}
+.bg-cream{background:var(--cream);}
+.sec-wrap{max-width:1260px;margin:0 auto;}
+.sec-hd{text-align:center;max-width:680px;margin:0 auto 64px;}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  font-weight:700;color:var(--blue);margin-bottom:14px;
+}
+.tag-dash{width:24px;height:1.5px;background:var(--blue);border-radius:2px;}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,4vw,48px);
+  font-weight:700;line-height:1.2;
+  color:var(--text);margin-bottom:14px;
+}
+.sec-title .acc{color:var(--blue);}
+.sec-title .it{font-style:italic;}
+.sec-desc{font-size:15px;color:var(--text2);line-height:1.8;}
+.bg-navy .sec-title{color:var(--white);}
+.bg-navy .sec-desc{color:rgba(255,255,255,0.6);}
+.bg-navy .sec-tag{color:var(--sky2);}
+.bg-navy .tag-dash{background:var(--sky2);}
+
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(36px);transition:all 0.8s var(--tr);}
+.rv.on{opacity:1;transform:none;}
+.rv-l{opacity:0;transform:translateX(-36px);transition:all 0.8s var(--tr);}
+.rv-l.on{opacity:1;transform:none;}
+.rv-r{opacity:0;transform:translateX(36px);transition:all 0.8s var(--tr);}
+.rv-r.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s!important}
+.d2{transition-delay:.2s!important}
+.d3{transition-delay:.3s!important}
+.d4{transition-delay:.4s!important}
+.d5{transition-delay:.5s!important}
+.d6{transition-delay:.6s!important}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;max-width:1260px;margin:0 auto;}
+.about-visual{}
+.about-img-stack{position:relative;}
+.about-img-main{
+  width:100%;border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 60px var(--shadow);
+  aspect-ratio:4/3;
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+}
+.about-img-main img{width:100%;height:100%;object-fit:cover;}
+.about-img-placeholder{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:var(--text3);padding:40px;text-align:center;
+}
+.about-firm-card{
+  position:absolute;bottom:-28px;right:-28px;
+  background:var(--white);border-radius:16px;
+  padding:22px 26px;
+  box-shadow:0 12px 40px var(--shadow);
+  border:1px solid var(--border);
+  min-width:200px;
+}
+.afc-label{font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;font-weight:600;margin-bottom:4px;}
+.afc-val{font-size:14px;font-weight:700;color:var(--text);}
+.afc-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.afc-row:last-child{border-bottom:none;}
+.about-badge{
+  position:absolute;top:-20px;left:-20px;
+  width:88px;height:88px;
+  background:var(--navy);border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(11,37,69,0.35);
+  border:3px solid var(--white);
+}
+.ab-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--white);line-height:1;}
+.ab-text{font-size:8px;letter-spacing:1px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-top:2px;}
+.about-text{}
+.about-text .sec-tag,.about-text .sec-title{text-align:left;}
+.about-p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:14px;}
+.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+.af{
+  display:flex;align-items:center;gap:11px;
+  padding:13px 14px;background:var(--off);
+  border:1px solid var(--border);border-radius:10px;
+  transition:all 0.3s ease;cursor:default;
+}
+.af:hover{border-color:var(--blue);background:var(--cream);transform:translateX(3px);}
+.af-icon{width:36px;height:36px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.af-text{font-size:12.5px;font-weight:600;color:var(--text);}
+
+/* ─── SERVICES ─── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1260px;margin:0 auto;}
+.svc-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:32px 26px;
+  transition:all 0.4s var(--tr);position:relative;overflow:hidden;cursor:default;
+}
+.svc-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,111,181,0.04) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.4s;
+}
+.svc-card:hover::before{opacity:1;}
+.svc-card:hover{transform:translateY(-7px);box-shadow:0 22px 55px rgba(26,111,181,0.13);border-color:rgba(26,111,181,0.25);}
+.svc-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--sky));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;
+}
+.svc-card:hover .svc-accent{transform:scaleX(1);}
+.svc-num{
+  font-family:'Playfair Display',serif;font-size:50px;font-weight:800;
+  color:rgba(26,111,181,0.07);position:absolute;top:12px;right:16px;line-height:1;
+}
+.svc-icon{
+  width:52px;height:52px;
+  background:linear-gradient(135deg,var(--cream),rgba(26,111,181,0.1));
+  border-radius:13px;display:flex;align-items:center;justify-content:center;
+  font-size:23px;margin-bottom:18px;border:1px solid var(--border);
+  transition:all 0.3s;
+}
+.svc-card:hover .svc-icon{background:var(--blue);border-color:var(--blue);}
+.svc-name{
+  font-family:'Playfair Display',serif;font-size:20px;font-weight:700;
+  color:var(--text);margin-bottom:9px;
+}
+.svc-desc{font-size:13.5px;color:var(--text2);line-height:1.75;margin-bottom:16px;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.svc-tag{
+  font-size:10px;padding:4px 9px;
+  background:var(--cream);color:var(--blue);
+  border-radius:20px;font-weight:600;letter-spacing:0.4px;
+  border:1px solid rgba(26,111,181,0.18);
+}
+
+/* ─── STATS ─── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1260px;margin:0 auto;}
+.stat-card{
+  text-align:center;padding:50px 24px;
+  border-right:1px solid rgba(255,255,255,0.08);
+  transition:background 0.3s;
+}
+.stat-card:last-child{border-right:none;}
+.stat-card:hover{background:rgba(255,255,255,0.04);}
+.stat-ic{font-size:30px;margin-bottom:14px;display:block;}
+.stat-n{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(46px,5vw,66px);font-weight:800;
+  color:var(--white);line-height:1;margin-bottom:6px;
+}
+.stat-s{color:var(--sky2);font-size:0.55em;}
+.stat-l{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.42);text-transform:uppercase;font-weight:500;}
+
+/* ─── TEAM — PARTNER CARD ─── */
+.team-grid{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;max-width:1260px;margin:0 auto;}
+.partner-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:18px;padding:32px 24px;text-align:center;
+  width:260px;transition:all 0.4s ease;position:relative;overflow:hidden;cursor:default;
+}
+.partner-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--sky));
+  transform:scaleX(0);transition:transform 0.4s;transform-origin:left;
+}
+.partner-card:hover::before{transform:scaleX(1);}
+.partner-card:hover{transform:translateY(-7px);box-shadow:0 18px 48px rgba(26,111,181,0.14);}
+.p-avatar{
+  width:100px;height:100px;border-radius:50%;margin:0 auto 16px;
+  background:linear-gradient(135deg,var(--cream),rgba(26,111,181,0.1));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:38px;font-weight:700;
+  color:var(--blue);border:3px solid var(--border);overflow:hidden;
+  transition:all 0.3s;
+}
+.partner-card:hover .p-avatar{border-color:var(--blue);box-shadow:0 6px 18px rgba(26,111,181,0.2);}
+.p-avatar img{width:100%;height:100%;object-fit:cover;}
+.p-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.p-role{font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;font-weight:600;margin-bottom:9px;}
+.p-exp{font-size:13px;color:var(--text2);margin-bottom:12px;}
+.p-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;}
+.p-tag{padding:3px 9px;background:var(--cream);border-radius:20px;font-size:10px;color:var(--blue);font-weight:600;border:1px solid rgba(26,111,181,0.18);}
+
+/* ─── ARTICLES ─── */
+.art-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:22px 18px;text-align:center;
+  width:190px;transition:all 0.35s ease;cursor:default;
+}
+.art-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(26,111,181,0.1);}
+.art-av{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 12px;
+  background:linear-gradient(135deg,var(--cream),rgba(26,111,181,0.07));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  color:var(--blue);overflow:hidden;border:2px solid var(--border);
+}
+.art-av img{width:100%;height:100%;object-fit:cover;}
+.art-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.art-role{font-size:9px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;font-weight:600;margin-bottom:6px;}
+.art-work{font-size:11.5px;color:var(--text2);line-height:1.55;}
+.no-data{text-align:center;padding:50px;color:var(--text3);font-size:14px;width:100%;}
+
+/* ─── BLOG ─── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1260px;margin:0 auto;}
+.blog-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;transition:all 0.4s ease;cursor:default;
+}
+.blog-card:hover{transform:translateY(-6px);box-shadow:0 18px 46px rgba(26,111,181,0.11);}
+.blog-top{
+  height:175px;display:flex;align-items:center;justify-content:center;
+  font-size:46px;position:relative;overflow:hidden;
+}
+.bg1{background:linear-gradient(135deg,#dceffe,#c8e8fc);}
+.bg2{background:linear-gradient(135deg,#dcfce7,#c9f4d7);}
+.bg3{background:linear-gradient(135deg,#fef3c7,#fde68a);}
+.blog-body{padding:22px 20px;}
+.blog-category{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:700;color:var(--blue);margin-bottom:9px;
+  display:flex;align-items:center;gap:5px;
+}
+.blog-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:9px;}
+.blog-excerpt{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.blog-meta{display:flex;justify-content:space-between;align-items:center;}
+.blog-date{font-size:11px;color:var(--text3);}
+.blog-read{font-size:11.5px;font-weight:700;color:var(--blue);text-decoration:none;}
+.blog-read:hover{color:var(--navy);}
+
+/* ─── WHY US STRIP ─── */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1260px;margin:0 auto;}
+.why-card{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:28px 22px;text-align:center;
+  transition:all 0.3s;
+}
+.why-card:hover{background:rgba(255,255,255,0.1);}
+.why-ic{font-size:32px;margin-bottom:12px;display:block;}
+.why-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:7px;}
+.why-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:50px;align-items:start;max-width:1260px;margin:0 auto;}
+.ct-items{}
+.ct-item{
+  display:flex;gap:14px;padding:16px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:10px;
+  transition:all 0.3s;cursor:default;
+}
+.ct-item:hover{border-color:var(--blue);transform:translateX(4px);background:var(--cream);}
+.ct-icon{
+  width:44px;height:44px;background:var(--navy);
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-size:19px;flex-shrink:0;
+}
+.ct-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:600;margin-bottom:2px;}
+.ct-val{font-size:13.5px;font-weight:500;color:var(--text);line-height:1.5;}
+.ct-val a{color:inherit;text-decoration:none;transition:color 0.3s;}
+.ct-val a:hover{color:var(--blue);}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px;background:#25D366;color:var(--white);
+  border:none;border-radius:11px;font-size:13.5px;font-weight:700;
+  cursor:pointer;text-decoration:none;transition:all 0.3s;
+  box-shadow:0 7px 22px rgba(37,211,102,0.28);margin-top:8px;
+  font-family:'Plus Jakarta Sans',sans-serif;width:100%;
+}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,0.38);}
+.cf{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:40px;
+  box-shadow:0 14px 44px var(--shadow);
+}
+.cf-h{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.cf-sub{font-size:13px;color:var(--text3);margin-bottom:24px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
+.cf-grp{margin-bottom:11px;}
+.cf-grp label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;color:var(--text3);margin-bottom:5px;}
+.cf-grp input,.cf-grp select,.cf-grp textarea{
+  width:100%;padding:12px 14px;
+  border:1px solid var(--border);border-radius:9px;
+  font-size:13.5px;font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--text);background:var(--off);
+  transition:all 0.3s;outline:none;
+}
+.cf-grp input:focus,.cf-grp select:focus,.cf-grp textarea:focus{
+  border-color:var(--blue);background:var(--white);
+  box-shadow:0 0 0 3px rgba(26,111,181,0.08);
+}
+.cf-grp textarea{resize:vertical;min-height:95px;}
+.cf-submit{
+  width:100%;padding:14px;background:var(--navy);color:var(--white);
+  border:none;border-radius:9px;font-size:13.5px;font-weight:700;
+  cursor:pointer;transition:all 0.3s;font-family:'Plus Jakarta Sans',sans-serif;
+  letter-spacing:0.5px;
+}
+.cf-submit:hover{background:var(--blue);transform:translateY(-1px);box-shadow:0 7px 22px var(--glow);}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--navy);color:var(--white);
+  padding:64px 5% 26px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.ft-grid{
+  max-width:1260px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px;
+}
+.ft-brand{}
+.ft-logo-row{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+.ft-firm{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--white);}
+.ft-sub2{font-size:9px;letter-spacing:2.5px;color:var(--sky2);text-transform:uppercase;}
+.ft-desc{font-size:13px;color:rgba(255,255,255,0.42);line-height:1.75;margin-bottom:18px;max-width:250px;}
+.ft-socials{display:flex;gap:7px;}
+.ft-soc{
+  width:34px;height:34px;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:14px;
+  transition:all 0.3s;
+}
+.ft-soc:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+.ft-col h5{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  font-weight:700;color:rgba(255,255,255,0.45);margin-bottom:16px;
+}
+.ft-col ul{list-style:none;}
+.ft-col li{margin-bottom:9px;}
+.ft-col a{
+  font-size:13px;color:rgba(255,255,255,0.42);
+  text-decoration:none;transition:all 0.3s;
+  display:inline-block;
+}
+.ft-col a:hover{color:var(--white);transform:translateX(3px);}
+.ft-bottom{
+  max-width:1260px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  padding-top:22px;border-top:1px solid rgba(255,255,255,0.06);
+}
+.ft-copy{font-size:12px;color:rgba(255,255,255,0.28);}
+.icai-pill{
+  padding:4px 11px;background:rgba(26,111,181,0.35);
+  border:1px solid rgba(26,111,181,0.45);border-radius:20px;
+  font-size:10px;color:var(--sky2);font-weight:600;letter-spacing:1px;
+}
+
+/* ─── FLOAT WA ─── */
+#wa-float{position:fixed;bottom:26px;right:26px;z-index:800;}
+.wa-float-btn{
+  width:54px;height:54px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 5px 20px rgba(37,211,102,0.4);
+  text-decoration:none;font-size:25px;
+  transition:all 0.3s;animation:wap 3s ease-in-out infinite;
+}
+.wa-float-btn:hover{transform:scale(1.1);}
+@keyframes wap{0%,100%{box-shadow:0 5px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 5px 36px rgba(37,211,102,0.6),0 0 0 9px rgba(37,211,102,0.07);}}
+
+/* ─── ADMIN MODAL ─── */
+#admin-modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(5,18,40,0.78);backdrop-filter:blur(12px);
+  z-index:99000;align-items:center;justify-content:center;
+}
+#admin-modal.show{display:flex;}
+.adm-box{
+  background:var(--white);border-radius:22px;
+  padding:48px 42px;width:410px;max-width:94vw;
+  box-shadow:0 36px 72px rgba(0,0,0,0.28);
+  animation:admIn 0.38s ease;position:relative;
+}
+@keyframes admIn{from{transform:translateY(-18px) scale(0.94);opacity:0;}to{transform:none;opacity:1;}}
+.adm-x{
+  position:absolute;top:14px;right:14px;
+  width:28px;height:28px;background:var(--off);
+  border:1px solid var(--border);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;color:var(--text3);transition:all 0.2s;
+}
+.adm-x:hover{background:#fee2e2;color:#dc2626;}
+.adm-icon{text-align:center;font-size:44px;margin-bottom:14px;}
+.adm-title{font-family:'Cinzel',serif;font-size:21px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
+.adm-sub{font-size:13px;color:var(--text3);text-align:center;margin-bottom:26px;}
+.adm-inp{
+  width:100%;padding:12px 14px;border:1px solid var(--border);
+  border-radius:9px;font-size:13.5px;font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--text);background:var(--off);
+  outline:none;transition:all 0.3s;margin-bottom:11px;
+}
+.adm-inp:focus{border-color:var(--blue);background:var(--white);}
+.adm-go{
+  width:100%;padding:13px;background:var(--navy);color:var(--white);
+  border:none;border-radius:9px;font-size:13.5px;font-weight:700;
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.3s;
+}
+.adm-go:hover{background:var(--blue);}
+.adm-err{color:#dc2626;font-size:13px;text-align:center;margin-top:9px;display:none;}
+
+/* ─── ADMIN PANEL ─── */
+#admin-panel{
+  display:none;position:fixed;inset:0;
+  background:var(--off);z-index:99001;overflow-y:auto;
+}
+#admin-panel.show{display:block;}
+.ap-hdr{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:16px 40px;display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:10;
+}
+.ap-hdr-title{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:9px;}
+.ap-hdr-close{
+  padding:9px 20px;background:#fee2e2;border:1px solid #fecaca;
+  border-radius:7px;color:#dc2626;font-size:12.5px;font-weight:700;
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;
+}
+.ap-hdr-close:hover{background:#fecaca;}
+.ap-tabs-bar{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:0 40px;display:flex;gap:4px;
+}
+.ap-tab{
+  padding:13px 22px;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:700;color:var(--text3);cursor:pointer;
+  border-bottom:2px solid transparent;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all 0.25s;background:none;border-top:none;border-left:none;border-right:none;
+}
+.ap-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.ap-tab:hover:not(.active){color:var(--text2);}
+.ap-body{padding:32px 40px;max-width:1060px;margin:0 auto;}
+.ap-tc{display:none;}
+.ap-tc.active{display:block;}
+.ap-sec-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.ap-sec-sub{font-size:13.5px;color:var(--text3);margin-bottom:24px;}
+.ap-form-box{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:26px;margin-bottom:28px;
+}
+.ap-form-box h4{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:16px;}
+.ap-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px;margin-bottom:11px;}
+.ap-iw label{display:block;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;font-weight:700;color:var(--text3);margin-bottom:4px;}
+.ap-iw input,.ap-iw textarea{
+  width:100%;padding:10px 13px;border:1px solid var(--border);
+  border-radius:7px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--text);background:var(--off);outline:none;transition:all 0.3s;
+}
+.ap-iw input:focus,.ap-iw textarea:focus{border-color:var(--blue);background:var(--white);}
+.ap-iw textarea{resize:vertical;min-height:56px;}
+.ap-btn-add{
+  padding:10px 24px;background:var(--navy);color:var(--white);
+  border:none;border-radius:7px;font-size:11.5px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.3s;
+}
+.ap-btn-add:hover{background:var(--blue);transform:translateY(-1px);}
+.ap-list-hdr{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:700;color:var(--text3);margin-bottom:12px;
+  display:flex;align-items:center;gap:7px;
+}
+.ap-cnt{background:var(--navy);color:var(--white);font-size:10px;padding:2px 7px;border-radius:10px;}
+.ap-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px;}
+.ap-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:11px;padding:14px;display:flex;gap:11px;
+  align-items:flex-start;position:relative;transition:all 0.2s;
+}
+.ap-card:hover{border-color:rgba(26,111,181,0.2);box-shadow:0 3px 12px var(--shadow);}
+.ap-card-av{
+  width:44px;height:44px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--cream),rgba(26,111,181,0.1));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--blue);overflow:hidden;
+}
+.ap-card-av img{width:100%;height:100%;object-fit:cover;}
+.ap-card-name{font-size:13.5px;font-weight:700;color:var(--text);}
+.ap-card-role{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin:2px 0;}
+.ap-card-desc{font-size:11.5px;color:var(--text3);}
+.ap-del-btn{
+  position:absolute;top:9px;right:9px;
+  width:24px;height:24px;background:#fee2e2;border:1px solid #fecaca;
+  border-radius:5px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:11px;color:#dc2626;transition:all 0.2s;
+}
+.ap-del-btn:hover{background:#fecaca;transform:scale(1.1);}
+.ap-empty{text-align:center;padding:36px;color:var(--text3);font-size:13.5px;}
+.ap-empty-ic{font-size:34px;margin-bottom:7px;}
+
+/* ─── HERO ADMIN ─── */
+.hero-slide-admin-item{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:11px;padding:16px 18px;margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:14px;position:relative;
+}
+.hero-slide-admin-item.active-item{
+  border-color:var(--blue);
+  background:var(--cream);
+}
+.hsa-preview{
+  width:80px;height:54px;border-radius:7px;overflow:hidden;
+  background:var(--off);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;border:1px solid var(--border);
+}
+.hsa-preview img,.hsa-preview video{width:100%;height:100%;object-fit:cover;}
+.hsa-info{flex:1;}
+.hsa-type{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--text3);margin-bottom:3px;}
+.hsa-url{font-size:12px;color:var(--text2);word-break:break-all;margin-bottom:4px;}
+.hsa-link-text{font-size:11px;color:var(--blue);margin-bottom:6px;}
+.hsa-actions{display:flex;gap:8px;align-items:center;}
+.hsa-toggle{
+  padding:5px 12px;font-size:10.5px;font-weight:700;
+  border-radius:5px;cursor:pointer;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;
+}
+.hsa-toggle.on{background:#dcfce7;color:#16a34a;border:1px solid #bbf7d0;}
+.hsa-toggle.off{background:var(--off);color:var(--text3);border:1px solid var(--border);}
+.hsa-del{
+  width:26px;height:26px;background:#fee2e2;border:1px solid #fecaca;
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:12px;color:#dc2626;transition:all 0.2s;
+}
+.hsa-del:hover{background:#fecaca;}
+.hsa-order{
+  font-size:10px;color:var(--text3);font-weight:700;
+  background:var(--off);border:1px solid var(--border);border-radius:5px;
+  padding:3px 8px;
+}
+/* WA admin */
+.wa-admin-box{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:32px;max-width:440px;}
+.wa-cur-row{display:flex;align-items:center;gap:12px;padding:16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;margin-bottom:20px;}
+.wa-cur-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#16a34a;}
+.wa-save-btn{width:100%;padding:12px;background:#25D366;color:var(--white);border:none;border-radius:9px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.3s;margin-top:11px;}
+.wa-save-btn:hover{background:#16a34a;transform:translateY(-1px);}
+.wa-saved-msg{display:none;margin-top:9px;padding:9px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;font-size:12.5px;font-weight:600;color:#16a34a;text-align:center;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1060px){
+  .about-grid{grid-template-columns:1fr;gap:44px;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-card{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  nav,.nav-links{display:none;}
+  #nav .nav-links{display:none;}
+  .ham{display:flex;}
+  .sp{padding:64px 5%;}
+  .hero-content{padding:110px 5% 70px;}
+  .svc-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{flex-wrap:wrap;gap:0;}
+  .hs{padding:0 20px 0 0;margin-right:20px;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-outline{width:100%;justify-content:center;}
+  .about-feats{grid-template-columns:1fr;}
+  .cf-row{grid-template-columns:1fr;}
+  .cf{padding:24px 18px;}
+  footer{padding:48px 5% 22px;}
+  .ft-grid{grid-template-columns:1fr;}
+  .ft-bottom{flex-direction:column;text-align:center;}
+  .ap-hdr{padding:12px 18px;}
+  .ap-tabs-bar{padding:0 18px;}
+  .ap-body{padding:22px 18px;}
+  .ap-row{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+  .partner-card{width:100%;max-width:270px;}
+  .art-card{width:100%;max-width:200px;}
+  .why-grid{grid-template-columns:1fr;}
+  .about-firm-card{position:static;margin-top:20px;}
+  .about-badge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-brand" id="logo-link">
+    <svg class="nav-logo-img" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="150" r="145" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <text x="150" y="145" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,serif" font-size="86" font-weight="900" fill="white" letter-spacing="2">CA</text>
+      <line x1="38" y1="190" x2="106" y2="190" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+      <line x1="194" y1="190" x2="262" y2="190" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+      <text x="150" y="228" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="24" font-weight="700" fill="rgba(255,255,255,0.7)" letter-spacing="9">INDIA</text>
+    </svg>
+    <div>
+      <div class="nav-firm">Chetan Agarwal & Co.</div>
+      <div class="nav-sub">Chartered Accountants</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#services" class="nav-link">Services</a></li>
+    <li><a href="#partners" class="nav-link">Partners</a></li>
+    <li><a href="#articles" class="nav-link">Articles</a></li>
+    <li><a href="#blog" class="nav-link">Insights</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+    <li><a href="#contact" class="nav-link nav-cta">Consult Us</a></li>
+  </ul>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#partners" onclick="closeMob()">Partners</a>
+  <a href="#articles" onclick="closeMob()">Articles</a>
+  <a href="#blog" onclick="closeMob()">Insights</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Slides container — populated by JS -->
+  <div class="hero-slides" id="heroSlides"></div>
+  <!-- Fallback bg shown when no slides active -->
+  <div class="hero-fallback" id="heroFallback">
+    <div class="hfb-grid"></div>
+    <div class="hfb-circle1"></div>
+    <div class="hfb-circle2"></div>
+  </div>
+  <div class="hero-overlay" id="heroOverlay"></div>
+  <div class="hero-bottom-grad"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        <span class="hero-eyebrow-text">Established 1980 · Jamnagar & Ahmedabad</span>
+      </div>
+      <h1 class="hero-title">
+        Four Decades of<br>
+        <em class="ht-em">Financial Wisdom</em>
+      </h1>
+      <div class="hero-tagline">Chetan Agarwal & Co. — Chartered Accountants</div>
+      <p class="hero-desc">Trusted by hundreds of businesses and individuals across Gujarat. We bring integrity, expertise, and personalized care to every financial decision.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services ↗</a>
+        <a href="#contact" class="btn-outline">Schedule Consultation</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs">
+          <div class="hs-n"><span class="counter" data-target="44">0</span><span class="hs-suf">+</span></div>
+          <div class="hs-l">Years</div>
+        </div>
+        <div class="hs">
+          <div class="hs-n"><span class="counter" data-target="500">0</span><span class="hs-suf">+</span></div>
+          <div class="hs-l">Clients</div>
+        </div>
+        <div class="hs">
+          <div class="hs-n"><span class="counter" data-target="2">0</span></div>
+          <div class="hs-l">Offices</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slide read-more link (populated by JS) -->
+  <a class="hero-slide-link" id="heroSlideLink" href="#" target="_blank" style="display:none;">Read More →</a>
+  <!-- Slide dots -->
+  <div class="hero-controls" id="heroControls" style="display:none;"></div>
+  <!-- Scroll hint -->
+  <div class="scroll-ind">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-band">
+  <div class="ticker-inner" id="ticker">
+    <span>GST Advisory</span><span class="accent">★</span>
+    <span>Income Tax Planning</span><span class="accent">★</span>
+    <span>Statutory Audit</span><span class="accent">★</span>
+    <span>Company Compliance</span><span class="accent">★</span>
+    <span>Financial Advisory</span><span class="accent">★</span>
+    <span>ICAI Registered Firm</span><span class="accent">★</span>
+    <span>44+ Years of Excellence</span><span class="accent">★</span>
+    <span>Jamnagar & Ahmedabad</span><span class="accent">★</span>
+    <!-- duplicate for seamless loop -->
+    <span>GST Advisory</span><span class="accent">★</span>
+    <span>Income Tax Planning</span><span class="accent">★</span>
+    <span>Statutory Audit</span><span class="accent">★</span>
+    <span>Company Compliance</span><span class="accent">★</span>
+    <span>Financial Advisory</span><span class="accent">★</span>
+    <span>ICAI Registered Firm</span><span class="accent">★</span>
+    <span>44+ Years of Excellence</span><span class="accent">★</span>
+    <span>Jamnagar & Ahmedabad</span><span class="accent">★</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sp bg-white">
+  <div class="about-grid">
+    <div class="about-visual rv-l">
+      <div class="about-img-stack">
+        <div class="about-img-main">
+          <div class="about-img-placeholder">
+            <svg width="72" height="72" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="150" cy="150" r="145" fill="#e8f2ff" stroke="rgba(26,111,181,0.2)" stroke-width="1.5"/>
+              <text x="150" y="145" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,serif" font-size="86" font-weight="900" fill="#1a6fb5" letter-spacing="2">CA</text>
+              <line x1="38" y1="190" x2="106" y2="190" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+              <line x1="194" y1="190" x2="262" y2="190" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+              <text x="150" y="228" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="24" font-weight="700" fill="#1a6fb5" letter-spacing="9">INDIA</text>
+            </svg>
+            <p style="font-size:13px;color:var(--text3);margin-top:8px;">Chetan Agarwal & Co.</p>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="ab-num">44</div>
+          <div class="ab-text">Years</div>
+        </div>
+        <div class="about-firm-card">
+          <div class="afc-row"><span class="afc-label">Head Office</span><span class="afc-val">Jamnagar</span></div>
+          <div class="afc-row"><span class="afc-label">Branch</span><span class="afc-val">Ahmedabad</span></div>
+          <div class="afc-row"><span class="afc-label">Established</span><span class="afc-val">1980</span></div>
+          <div class="afc-row"><span class="afc-label">Membership</span><span class="afc-val">ICAI</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text rv-r">
+      <div class="sec-tag"><span class="tag-dash"></span>About Our Firm<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Your Trusted <span class="acc it">Partner</span><br>Since 1980</h2>
+      <p class="about-p">Chetan Agarwal & Co. is a distinguished Chartered Accountancy firm rooted in Jamnagar, Gujarat. Founded in 1980 with a commitment to professional excellence, we have grown into a trusted name across the region.</p>
+      <p class="about-p">With offices in Jamnagar and Ahmedabad, we serve a diverse clientele — from individual taxpayers and MSMEs to large corporations — providing comprehensive solutions in taxation, audit, compliance, and business advisory.</p>
+      <p class="about-p">Our approach is simple: understand your unique needs, deliver accurate and timely solutions, and maintain the highest standards of professional conduct and confidentiality.</p>
+      <div class="about-feats">
+        <div class="af"><div class="af-icon">⚖️</div><div class="af-text">ICAI Registered</div></div>
+        <div class="af"><div class="af-icon">🔒</div><div class="af-text">Client Confidentiality</div></div>
+        <div class="af"><div class="af-icon">📊</div><div class="af-text">Expert Team</div></div>
+        <div class="af"><div class="af-icon">⚡</div><div class="af-text">Timely Delivery</div></div>
+        <div class="af"><div class="af-icon">🌐</div><div class="af-text">Two Locations</div></div>
+        <div class="af"><div class="af-icon">💼</div><div class="af-text">44+ Years Experience</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sp bg-off">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Our Services<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Comprehensive <span class="acc it">Professional</span> Services</h2>
+      <p class="sec-desc">We provide a full spectrum of chartered accountancy services designed to protect, grow, and sustain your financial health.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv d1"><div class="svc-accent"></div><div class="svc-num">01</div><div class="svc-icon"><span>📋</span></div><div class="svc-name">GST & Indirect Taxation</div><div class="svc-desc">Complete GST registration, return filing, reconciliation, and audit. Expert advisory on GST structure, ITC claims, and regulatory compliance.</div><div class="svc-tags"><span class="svc-tag">GST Registration</span><span class="svc-tag">Return Filing</span><span class="svc-tag">GST Audit</span></div></div>
+      <div class="svc-card rv d2"><div class="svc-accent"></div><div class="svc-num">02</div><div class="svc-icon"><span>🔍</span></div><div class="svc-name">Audit & Assurance</div><div class="svc-desc">Statutory, internal, tax, and concurrent audits conducted with rigorous professional independence. Accurate, detailed reports that strengthen governance.</div><div class="svc-tags"><span class="svc-tag">Statutory Audit</span><span class="svc-tag">Internal Audit</span><span class="svc-tag">Tax Audit</span></div></div>
+      <div class="svc-card rv d3"><div class="svc-accent"></div><div class="svc-num">03</div><div class="svc-icon"><span>📝</span></div><div class="svc-name">Income Tax Services</div><div class="svc-desc">Accurate ITR filing for individuals, firms, LLPs, and corporates. Expert handling of tax assessments, scrutiny notices, appeals, and planning.</div><div class="svc-tags"><span class="svc-tag">ITR Filing</span><span class="svc-tag">Tax Planning</span><span class="svc-tag">TDS/TCS</span></div></div>
+      <div class="svc-card rv d1"><div class="svc-accent"></div><div class="svc-num">04</div><div class="svc-icon"><span>💼</span></div><div class="svc-name">Business Advisory</div><div class="svc-desc">Strategic financial consulting, business setup advisory, MIS reporting, cash flow management, and CFO-level support for informed decisions.</div><div class="svc-tags"><span class="svc-tag">Business Setup</span><span class="svc-tag">Financial MIS</span><span class="svc-tag">CFO Advisory</span></div></div>
+      <div class="svc-card rv d2"><div class="svc-accent"></div><div class="svc-num">05</div><div class="svc-icon"><span>⚖️</span></div><div class="svc-name">Company Law & Compliance</div><div class="svc-desc">Company incorporation, ROC filings, annual compliance, LLP formation, and regulatory advisory under the Companies Act.</div><div class="svc-tags"><span class="svc-tag">ROC Filing</span><span class="svc-tag">Incorporation</span><span class="svc-tag">MCA Compliance</span></div></div>
+      <div class="svc-card rv d3"><div class="svc-accent"></div><div class="svc-num">06</div><div class="svc-icon"><span>📈</span></div><div class="svc-name">Financial Planning</div><div class="svc-desc">Holistic financial planning and investment structuring for individuals, HUFs, and businesses. Wealth management advisory and project finance support.</div><div class="svc-tags"><span class="svc-tag">Wealth Planning</span><span class="svc-tag">Investment Advisory</span><span class="svc-tag">Project Finance</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="sp-sm bg-navy">
+  <div class="sec-wrap">
+    <div class="sec-hd rv" style="margin-bottom:44px;">
+      <div class="sec-tag"><span class="tag-dash"></span>Our Legacy<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Numbers That <span class="it">Speak</span></h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card rv d1"><span class="stat-ic">🏛️</span><div class="stat-n"><span class="counter" data-target="44">0</span><span class="stat-s">+</span></div><div class="stat-l">Years of Excellence</div></div>
+      <div class="stat-card rv d2"><span class="stat-ic">👥</span><div class="stat-n"><span class="counter" data-target="500">0</span><span class="stat-s">+</span></div><div class="stat-l">Satisfied Clients</div></div>
+      <div class="stat-card rv d3"><span class="stat-ic">📍</span><div class="stat-n"><span class="counter" data-target="2">0</span></div><div class="stat-l">Office Locations</div></div>
+      <div class="stat-card rv d4"><span class="stat-ic">📋</span><div class="stat-n"><span class="counter" data-target="1000">0</span><span class="stat-s">+</span></div><div class="stat-l">Returns Filed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sp-sm bg-white">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Why Choose Us<span class="tag-dash"></span></div>
+      <h2 class="sec-title">The <span class="acc it">Chetan Agarwal</span> Advantage</h2>
+    </div>
+    <div class="why-grid" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,var(--blue) 100%);border-radius:20px;padding:40px 32px;gap:20px;">
+      <div class="why-card rv d1"><span class="why-ic">🎓</span><div class="why-title">ICAI Qualified</div><div class="why-desc">Every professional is ICAI qualified with deep domain expertise and continuous education.</div></div>
+      <div class="why-card rv d2"><span class="why-ic">⏱️</span><div class="why-title">On-Time Delivery</div><div class="why-desc">We understand deadlines. Your filings and reports are always submitted before due dates.</div></div>
+      <div class="why-card rv d3"><span class="why-ic">🔐</span><div class="why-title">100% Confidential</div><div class="why-desc">Your financial data is handled with the highest levels of privacy and security.</div></div>
+      <div class="why-card rv d4"><span class="why-ic">🤝</span><div class="why-title">Personalized Service</div><div class="why-desc">We don't believe in one-size-fits-all. Each client gets a dedicated, tailored approach.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" class="sp bg-off">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Leadership<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Our <span class="acc it">Partners</span></h2>
+      <p class="sec-desc">Meet the experienced professionals who lead our firm with expertise, integrity, and an unwavering commitment to client success.</p>
+    </div>
+    <div class="team-grid" id="partners-grid"></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles" class="sp bg-white">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Our Team<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Articled <span class="acc it">Assistants</span></h2>
+      <p class="sec-desc">The bright young professionals undergoing training at our firm — building their skills under expert mentorship.</p>
+    </div>
+    <div class="team-grid" id="articles-grid"></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="sp bg-off">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Knowledge Hub<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Tax & Finance <span class="acc it">Insights</span></h2>
+      <p class="sec-desc">Stay informed with updates on tax laws, GST changes, and compliance requirements that affect you and your business.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card rv d1"><div class="blog-top bg1">📋</div><div class="blog-body"><div class="blog-category"><span>●</span>GST Update</div><div class="blog-title">Key GST Changes You Must Know in FY 2024–25</div><div class="blog-excerpt">An overview of the latest GST amendments, new return forms, and compliance requirements applicable to businesses across India.</div><div class="blog-meta"><span class="blog-date">April 2025</span><a href="#contact" class="blog-read">Read More →</a></div></div></div>
+      <div class="blog-card rv d2"><div class="blog-top bg2">📝</div><div class="blog-body"><div class="blog-category"><span>●</span>Income Tax</div><div class="blog-title">Income Tax Filing Guide for Individuals — AY 2025–26</div><div class="blog-excerpt">A comprehensive walkthrough of ITR forms, deductions under 80C/80D, new tax regime vs old regime comparison for this assessment year.</div><div class="blog-meta"><span class="blog-date">March 2025</span><a href="#contact" class="blog-read">Read More →</a></div></div></div>
+      <div class="blog-card rv d3"><div class="blog-top bg3">💼</div><div class="blog-body"><div class="blog-category"><span>●</span>Business Advisory</div><div class="blog-title">Why MSMEs Need a CA Partner for Growth</div><div class="blog-excerpt">How having a dedicated chartered accountant helps small and medium businesses with compliance, funding, and strategic financial planning.</div><div class="blog-meta"><span class="blog-date">February 2025</span><a href="#contact" class="blog-read">Read More →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sp bg-white">
+  <div class="sec-wrap">
+    <div class="sec-hd rv">
+      <div class="sec-tag"><span class="tag-dash"></span>Get In Touch<span class="tag-dash"></span></div>
+      <h2 class="sec-title">Let's <span class="acc it">Connect</span></h2>
+      <p class="sec-desc">Have questions or need professional advice? We are always ready to help you navigate your financial journey.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="rv-l">
+        <div class="ct-item"><div class="ct-icon">📍</div><div><div class="ct-label">Head Office — Jamnagar</div><div class="ct-val">601/602 Swagat Complex, Bedi Road,<br>Jamnagar – 361001, Gujarat</div></div></div>
+        <div class="ct-item"><div class="ct-icon">🏢</div><div><div class="ct-label">Branch Office — Ahmedabad</div><div class="ct-val">Ahmedabad, Gujarat</div></div></div>
+        <div class="ct-item"><div class="ct-icon">📞</div><div><div class="ct-label">Phone</div><div class="ct-val"><a href="tel:+919088038124">+91 90880 38124</a></div></div></div>
+        <div class="ct-item"><div class="ct-icon">✉️</div><div><div class="ct-label">Email</div><div class="ct-val"><a href="mailto:chetanagarwalandco@gmail.com">chetanagarwalandco@gmail.com</a></div></div></div>
+        <div class="ct-item"><div class="ct-icon">🕐</div><div><div class="ct-label">Office Hours</div><div class="ct-val">Monday – Saturday: 9:00 AM – 6:00 PM<br>Sunday: Closed</div></div></div>
+        <a id="mainWaBtn" href="#" target="_blank" class="wa-btn">💬 Enquire on WhatsApp</a>
+      </div>
+      <div class="cf rv-r">
+        <div class="cf-h">Send Us a Message</div>
+        <div class="cf-sub">We'll respond within 24 business hours</div>
+        <div class="cf-row">
+          <div class="cf-grp"><label>Your Name</label><input type="text" id="cfName" placeholder="Full Name"></div>
+          <div class="cf-grp"><label>Phone</label><input type="tel" id="cfPhone" placeholder="+91 00000 00000"></div>
+        </div>
+        <div class="cf-grp"><label>Email Address</label><input type="email" id="cfEmail" placeholder="your@email.com"></div>
+        <div class="cf-grp"><label>Service Required</label><select id="cfService"><option value="">Select a Service</option><option>GST & Indirect Taxation</option><option>Audit & Assurance</option><option>Income Tax Services</option><option>Business Advisory</option><option>Company Law & Compliance</option><option>Financial Planning</option><option>Other</option></select></div>
+        <div class="cf-grp"><label>Your Message</label><textarea id="cfMsg" placeholder="Tell us about your requirements..."></textarea></div>
+        <button class="cf-submit" onclick="sendWA()">Send via WhatsApp →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo-row">
+        <svg width="34" height="34" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="145" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <text x="150" y="145" text-anchor="middle" dominant-baseline="central" font-family="Cinzel,Georgia,serif" font-size="86" font-weight="900" fill="white" letter-spacing="2">CA</text>
+          <line x1="38" y1="190" x2="106" y2="190" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+          <line x1="194" y1="190" x2="262" y2="190" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+          <text x="150" y="228" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="24" font-weight="700" fill="#7dc4f5" letter-spacing="9">INDIA</text>
+        </svg>
+        <div>
+          <div class="ft-firm">Chetan Agarwal & Co.</div>
+          <div class="ft-sub2">Chartered Accountants</div>
+        </div>
+      </div>
+      <p class="ft-desc">Four decades of trusted financial expertise. Serving clients across Jamnagar, Ahmedabad, and beyond with integrity.</p>
+      <div class="ft-socials">
+        <a href="mailto:chetanagarwalandco@gmail.com" class="ft-soc">📧</a>
+        <a id="footerWa" href="#" target="_blank" class="ft-soc">💬</a>
+        <a href="tel:+919088038124" class="ft-soc">📞</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">GST & Taxation</a></li>
+        <li><a href="#services">Audit & Assurance</a></li>
+        <li><a href="#services">Income Tax</a></li>
+        <li><a href="#services">Business Advisory</a></li>
+        <li><a href="#services">Compliance</a></li>
+        <li><a href="#services">Financial Planning</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Firm</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#partners">Our Partners</a></li>
+        <li><a href="#articles">Our Articles</a></li>
+        <li><a href="#blog">Insights</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Offices</h5>
+      <ul>
+        <li><a href="#contact">Jamnagar Office</a></li>
+        <li><a href="#contact">Ahmedabad Office</a></li>
+        <li><a href="tel:+919088038124">+91 90880 38124</a></li>
+        <li><a href="mailto:chetanagarwalandco@gmail.com">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 Chetan Agarwal & Co. All rights reserved.</div>
+    <div style="display:flex;align-items:center;gap:10px;"><span class="icai-pill">ICAI Registered</span><span style="font-size:11px;color:rgba(255,255,255,0.28);">Member — Institute of Chartered Accountants of India</span></div>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<div id="wa-float"><a id="waFloatBtn" href="#" target="_blank" class="wa-float-btn">💬</a></div>
+
+<!-- ADMIN MODAL -->
+<div id="admin-modal">
+  <div class="adm-box">
+    <div class="adm-x" onclick="closeAdminModal()">✕</div>
+    <div class="adm-icon">🔐</div>
+    <div class="adm-title">Admin Access</div>
+    <div class="adm-sub">Enter your credentials to continue</div>
+    <input type="text" class="adm-inp" id="adUser" placeholder="Username" autocomplete="off">
+    <input type="password" class="adm-inp" id="adPass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="adm-go" onclick="doLogin()">🔓 Login</button>
+    <div class="adm-err" id="adErr">❌ Invalid credentials. Please try again.</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="ap-hdr">
+    <div class="ap-hdr-title">🛡️ Admin Panel — Chetan Agarwal & Co.</div>
+    <button class="ap-hdr-close" onclick="closeAdmin()">✕ Close</button>
+  </div>
+  <div class="ap-tabs-bar">
+    <button class="ap-tab active" onclick="tabSwitch('tabH',this)">🖼️ Hero Slides</button>
+    <button class="ap-tab" onclick="tabSwitch('tabP',this)">👔 Partners</button>
+    <button class="ap-tab" onclick="tabSwitch('tabA',this)">📚 Articles</button>
+    <button class="ap-tab" onclick="tabSwitch('tabW',this)">💬 WhatsApp</button>
+  </div>
+  <div class="ap-body">
+
+    <!-- HERO SLIDES TAB -->
+    <div class="ap-tc active" id="tabH">
+      <div class="ap-sec-title">Manage Hero Slideshow</div>
+      <div class="ap-sec-sub">Add images or videos for the hero section. Toggle Active/Inactive. Up to 5 items shown. Each item can have a "Read More" link that appears on the homepage.</div>
+      <div class="ap-form-box">
+        <h4>➕ Add New Hero Slide</h4>
+        <div class="ap-row">
+          <div class="ap-iw">
+            <label>Type</label>
+            <select id="hType" style="width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:7px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);outline:none;">
+              <option value="image">🖼️ Image</option>
+              <option value="video">🎥 Video</option>
+            </select>
+          </div>
+          <div class="ap-iw"><label>Media URL (image or video link)</label><input type="url" id="hUrl" placeholder="https://example.com/team-photo.jpg"></div>
+          <div class="ap-iw"><label>Caption (optional)</label><input type="text" id="hCaption" placeholder="Our dedicated team in Jamnagar"></div>
+        </div>
+        <div class="ap-row">
+          <div class="ap-iw"><label>Read More Link (optional — opens on homepage slide)</label><input type="url" id="hLink" placeholder="https://yourblog.com/article or #blog"></div>
+          <div class="ap-iw"><label>Read More Button Text</label><input type="text" id="hLinkText" placeholder="Read More" value="Read More"></div>
+        </div>
+        <button class="ap-btn-add" onclick="addHeroSlide()">➕ Add Slide</button>
+      </div>
+      <div class="ap-list-hdr">Current Slides <span class="ap-cnt" id="hCnt">0</span> <span style="font-size:11px;color:var(--text3);font-weight:400;">(max 5 active at a time)</span></div>
+      <div id="heroSlidesAdmin"></div>
+    </div>
+
+    <!-- PARTNERS TAB -->
+    <div class="ap-tc" id="tabP">
+      <div class="ap-sec-title">Manage Partners</div>
+      <div class="ap-sec-sub">Add or remove partner profiles. Changes appear instantly on the website.</div>
+      <div class="ap-form-box">
+        <h4>➕ Add New Partner</h4>
+        <div class="ap-row">
+          <div class="ap-iw"><label>Full Name *</label><input type="text" id="pName" placeholder="CA Full Name"></div>
+          <div class="ap-iw"><label>Role / Designation *</label><input type="text" id="pRole" placeholder="e.g. Managing Partner"></div>
+          <div class="ap-iw"><label>Experience</label><input type="text" id="pExp" placeholder="e.g. 20+ Years"></div>
+        </div>
+        <div class="ap-row">
+          <div class="ap-iw"><label>Specializations (comma separated)</label><input type="text" id="pWorks" placeholder="Taxation, Audit, GST Advisory"></div>
+          <div class="ap-iw"><label>Photo URL (optional)</label><input type="url" id="pPhoto" placeholder="https://example.com/photo.jpg"></div>
+        </div>
+        <button class="ap-btn-add" onclick="addPartner()">➕ Add Partner</button>
+      </div>
+      <div class="ap-list-hdr">Current Partners <span class="ap-cnt" id="pCnt">0</span></div>
+      <div class="ap-cards-grid" id="apPartnersGrid"></div>
+    </div>
+
+    <!-- ARTICLES TAB -->
+    <div class="ap-tc" id="tabA">
+      <div class="ap-sec-title">Manage Articled Assistants</div>
+      <div class="ap-sec-sub">Add or remove articled assistants. Remove when their training term concludes.</div>
+      <div class="ap-form-box">
+        <h4>➕ Add New Articled Assistant</h4>
+        <div class="ap-row">
+          <div class="ap-iw"><label>Full Name *</label><input type="text" id="aName" placeholder="Article Name"></div>
+          <div class="ap-iw"><label>Work Area</label><input type="text" id="aWorks" placeholder="e.g. GST Filing, Audit Support"></div>
+          <div class="ap-iw"><label>Photo URL (optional)</label><input type="url" id="aPhoto" placeholder="https://example.com/photo.jpg"></div>
+        </div>
+        <button class="ap-btn-add" onclick="addArticle()">➕ Add Article</button>
+      </div>
+      <div class="ap-list-hdr">Current Articles <span class="ap-cnt" id="aCnt">0</span></div>
+      <div class="ap-cards-grid" id="apArticlesGrid"></div>
+    </div>
+
+    <!-- WHATSAPP TAB -->
+    <div class="ap-tc" id="tabW">
+      <div class="ap-sec-title">WhatsApp Primary Number</div>
+      <div class="ap-sec-sub">This number is used across all enquiry buttons on the website.</div>
+      <div class="wa-admin-box">
+        <div class="wa-cur-row">
+          <span style="font-size:26px;">💬</span>
+          <div>
+            <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Current Number</div>
+            <div class="wa-cur-num" id="waDispNum">+91 90880 38124</div>
+          </div>
+        </div>
+        <div class="ap-iw"><label>WhatsApp Number (digits only, with country code)</label><input type="tel" id="waNewNum" value="919088038124" placeholder="919088038124"></div>
+        <div class="ap-iw" style="margin-top:10px;"><label>Display Format</label><input type="text" id="waFmt" value="+91 90880 38124" placeholder="+91 90880 38124"></div>
+        <button class="wa-save-btn" onclick="saveWA()">💾 Save & Apply</button>
+        <div class="wa-saved-msg" id="waSavedMsg">✅ WhatsApp number updated!</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+let partners = JSON.parse(localStorage.getItem('ca_partners')||'[]');
+let articles = JSON.parse(localStorage.getItem('ca_articles')||'[]');
+let heroSlides = JSON.parse(localStorage.getItem('ca_hero_slides')||'[]');
+let waNum = localStorage.getItem('ca_wa_num')||'919088038124';
+let waDisp = localStorage.getItem('ca_wa_disp')||'+91 90880 38124';
+
+function saveAll(){
+  localStorage.setItem('ca_partners',JSON.stringify(partners));
+  localStorage.setItem('ca_articles',JSON.stringify(articles));
+  localStorage.setItem('ca_hero_slides',JSON.stringify(heroSlides));
+}
+
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  navEl.classList.toggle('solid', window.scrollY > 50);
+});
+const hamEl = document.getElementById('ham');
+const mobMenu = document.getElementById('mobMenu');
+hamEl.addEventListener('click',()=>{
+  hamEl.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+});
+function closeMob(){hamEl.classList.remove('open');mobMenu.classList.remove('open');}
+
+// ══════════════════════════════════════════
+// HERO SLIDES LOGIC
+// ══════════════════════════════════════════
+let currentSlide = 0;
+let slideTimer = null;
+
+function getActiveSlides(){
+  return heroSlides.filter(s => s.active).slice(0,5);
+}
+
+function renderHeroSlides(){
+  const active = getActiveSlides();
+  const slidesEl = document.getElementById('heroSlides');
+  const fallback = document.getElementById('heroFallback');
+  const controls = document.getElementById('heroControls');
+  const slideLink = document.getElementById('heroSlideLink');
+
+  slidesEl.innerHTML = '';
+  controls.innerHTML = '';
+
+  if(!active.length){
+    // No active slides — show fallback background
+    fallback.style.display = 'block';
+    controls.style.display = 'none';
+    slideLink.style.display = 'none';
+    return;
+  }
+
+  fallback.style.display = 'none';
+  currentSlide = 0;
+
+  active.forEach((slide, i) => {
+    const div = document.createElement('div');
+    div.className = 'hero-slide' + (i===0?' active':'');
+    if(slide.type === 'video'){
+      div.innerHTML = `<video class="hero-slide-video" autoplay muted loop playsinline src="${slide.url}"></video>`;
+    } else {
+      div.style.backgroundImage = `url('${slide.url}')`;
+    }
+    slidesEl.appendChild(div);
+
+    // dot control
+    const dot = document.createElement('div');
+    dot.className = 'hc-dot' + (i===0?' active':'');
+    dot.onclick = () => goToSlide(i);
+    controls.appendChild(dot);
+  });
+
+  if(active.length > 1){
+    controls.style.display = 'flex';
+    clearInterval(slideTimer);
+    slideTimer = setInterval(()=>nextSlide(), 5000);
+  } else {
+    controls.style.display = 'none';
+  }
+
+  // Set read-more link for first slide
+  updateSlideLink(0);
+}
+
+function updateSlideLink(idx){
+  const active = getActiveSlides();
+  const slideLink = document.getElementById('heroSlideLink');
+  if(!active.length) return;
+  const s = active[idx];
+  if(s && s.link && s.link.trim()){
+    slideLink.href = s.link;
+    slideLink.textContent = (s.linkText || 'Read More') + ' →';
+    slideLink.style.display = 'inline-flex';
+    if(s.link.startsWith('http')) slideLink.target = '_blank'; else slideLink.target = '_self';
+  } else {
+    slideLink.style.display = 'none';
+  }
+}
+
+function goToSlide(idx){
+  const active = getActiveSlides();
+  if(!active.length) return;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hc-dot');
+  slides.forEach((s,i) => s.classList.toggle('active', i===idx));
+  dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+  currentSlide = idx;
+  updateSlideLink(idx);
+  clearInterval(slideTimer);
+  if(active.length > 1) slideTimer = setInterval(()=>nextSlide(), 5000);
+}
+
+function nextSlide(){
+  const active = getActiveSlides();
+  if(!active.length) return;
+  goToSlide((currentSlide+1) % active.length);
+}
+
+// ══════════════════════════════════════════
+// COUNTERS
+// ══════════════════════════════════════════
+let countersRan = false;
+function runCounters(){
+  if(countersRan) return;
+  countersRan = true;
+  document.querySelectorAll('.counter').forEach(el=>{
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const inc = target/55;
+    const t = setInterval(()=>{
+      current += inc;
+      if(current >= target){current=target;clearInterval(t);}
+      el.textContent = Math.floor(current);
+    },22);
+  });
+}
+
+// ══════════════════════════════════════════
+// REVEAL ON SCROLL
+// ══════════════════════════════════════════
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      revObs.unobserve(e.target);
+      if(e.target.classList.contains('stat-card')||e.target.closest('.stats-grid')) runCounters();
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>revObs.observe(el));
+// Trigger counters when stats section visible
+const statsObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) runCounters(); });
+},{threshold:0.2});
+document.querySelectorAll('.stats-grid').forEach(el=>statsObs.observe(el));
+
+// ══════════════════════════════════════════
+// WHATSAPP
+// ══════════════════════════════════════════
+function updateWAButtons(){
+  const msg = encodeURIComponent('Hello Chetan Agarwal & Co., I would like to enquire about your services.');
+  const url = `https://wa.me/${waNum}?text=${msg}`;
+  ['mainWaBtn','waFloatBtn','footerWa'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.href = url;
+  });
+  const dn = document.getElementById('waDispNum');
+  if(dn) dn.textContent = waDisp;
+  const wf = document.getElementById('waNewNum');
+  if(wf) wf.value = waNum;
+  const wfmt = document.getElementById('waFmt');
+  if(wfmt) wfmt.value = waDisp;
+}
+updateWAButtons();
+
+function sendWA(){
+  const n = document.getElementById('cfName').value||'Client';
+  const p = document.getElementById('cfPhone').value||'';
+  const e = document.getElementById('cfEmail').value||'';
+  const sv = document.getElementById('cfService').value||'General Enquiry';
+  const m = document.getElementById('cfMsg').value||'';
+  const txt = encodeURIComponent(`Hello Chetan Agarwal & Co.!\n\nName: ${n}\nPhone: ${p}\nEmail: ${e}\nService: ${sv}\nMessage: ${m}\n\n— Sent from website`);
+  window.open(`https://wa.me/${waNum}?text=${txt}`,'_blank');
+}
+
+// ══════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════
+let isLoggedIn = false;
+function openAdminModal(){
+  document.getElementById('admin-modal').classList.add('show');
+  setTimeout(()=>{const u=document.getElementById('adUser');if(u)u.focus();},200);
+}
+function closeAdminModal(){
+  document.getElementById('admin-modal').classList.remove('show');
+  document.getElementById('adUser').value='';
+  document.getElementById('adPass').value='';
+  document.getElementById('adErr').style.display='none';
+}
+function doLogin(){
+  const u=document.getElementById('adUser').value.trim();
+  const p=document.getElementById('adPass').value;
+  if(u==='chetan'&&p==='Admin@2026'){
+    isLoggedIn=true;closeAdminModal();openAdmin();
+  } else {
+    document.getElementById('adErr').style.display='block';
+    document.getElementById('adPass').value='';
+    document.getElementById('adPass').focus();
+  }
+}
+function openAdmin(){
+  document.getElementById('admin-panel').classList.add('show');
+  document.body.style.overflow='hidden';
+  renderAdminSlides();renderAdminPartners();renderAdminArticles();updateWAButtons();
+}
+function closeAdmin(){
+  document.getElementById('admin-panel').classList.remove('show');
+  document.body.style.overflow='';
+  isLoggedIn=false;
+}
+function tabSwitch(id,btn){
+  document.querySelectorAll('.ap-tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ap-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ══════════════════════════════════════════
+// HERO SLIDES ADMIN
+// ══════════════════════════════════════════
+function addHeroSlide(){
+  const type = document.getElementById('hType').value;
+  const url = document.getElementById('hUrl').value.trim();
+  const caption = document.getElementById('hCaption').value.trim();
+  const link = document.getElementById('hLink').value.trim();
+  const linkText = document.getElementById('hLinkText').value.trim()||'Read More';
+  if(!url){alert('Please enter a media URL.');return;}
+  const activeCount = heroSlides.filter(s=>s.active).length;
+  heroSlides.push({id:Date.now(),type,url,caption,link,linkText,active:activeCount<5});
+  saveAll();renderAdminSlides();renderHeroSlides();
+  ['hUrl','hCaption','hLink'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('hLinkText').value='Read More';
+}
+function toggleHeroSlide(id){
+  const slide = heroSlides.find(s=>s.id===id);
+  if(!slide) return;
+  const activeCount = heroSlides.filter(s=>s.active).length;
+  if(!slide.active && activeCount>=5){alert('Maximum 5 active slides allowed. Deactivate another first.');return;}
+  slide.active = !slide.active;
+  saveAll();renderAdminSlides();renderHeroSlides();
+}
+function delHeroSlide(id){
+  if(!confirm('Delete this slide?')) return;
+  heroSlides = heroSlides.filter(s=>s.id!==id);
+  saveAll();renderAdminSlides();renderHeroSlides();
+}
+function renderAdminSlides(){
+  const grid = document.getElementById('heroSlidesAdmin');
+  const cnt = document.getElementById('hCnt');
+  cnt.textContent = heroSlides.length;
+  if(!heroSlides.length){
+    grid.innerHTML='<div class="ap-empty"><div class="ap-empty-ic">🖼️</div><p>No slides added yet. Add images or videos above.</p></div>';
+    return;
+  }
+  grid.innerHTML = heroSlides.map((s,i)=>`
+    <div class="hero-slide-admin-item ${s.active?'active-item':''}">
+      <div class="hsa-preview">
+        ${s.type==='video'
+          ? `<video src="${s.url}" style="width:100%;height:100%;object-fit:cover;"></video>`
+          : `<img src="${s.url}" alt="" onerror="this.style.display='none';this.parentElement.textContent='🖼️'" style="width:100%;height:100%;object-fit:cover;">`
+        }
+      </div>
+      <div class="hsa-info">
+        <div class="hsa-type">${s.type==='video'?'🎥 Video':'🖼️ Image'}${s.caption?' · '+s.caption:''}</div>
+        <div class="hsa-url">${s.url.length>60?s.url.slice(0,60)+'...':s.url}</div>
+        ${s.link?`<div class="hsa-link-text">🔗 "${s.linkText||'Read More'}" → ${s.link.length>50?s.link.slice(0,50)+'...':s.link}</div>`:'<div class="hsa-link-text" style="color:var(--text3);">No read-more link set</div>'}
+        <div class="hsa-actions">
+          <span class="hsa-order">Slide #${i+1}</span>
+          <button class="hsa-toggle ${s.active?'on':'off'}" onclick="toggleHeroSlide(${s.id})">${s.active?'✓ Active':'○ Inactive'}</button>
+          <div class="hsa-del" onclick="delHeroSlide(${s.id})">🗑</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+// PARTNERS ADMIN
+// ══════════════════════════════════════════
+function addPartner(){
+  const n=document.getElementById('pName').value.trim();
+  const r=document.getElementById('pRole').value.trim();
+  const exp=document.getElementById('pExp').value.trim();
+  const w=document.getElementById('pWorks').value.trim();
+  const ph=document.getElementById('pPhoto').value.trim();
+  if(!n||!r){alert('Name and Role are required.');return;}
+  partners.push({id:Date.now(),name:n,role:r,exp,works:w,photo:ph});
+  saveAll();renderAdminPartners();renderPartners();
+  ['pName','pRole','pExp','pWorks','pPhoto'].forEach(id=>document.getElementById(id).value='');
+}
+function delPartner(id){
+  if(!confirm('Delete this partner?')) return;
+  partners=partners.filter(p=>p.id!==id);
+  saveAll();renderAdminPartners();renderPartners();
+}
+function renderAdminPartners(){
+  const grid=document.getElementById('apPartnersGrid');
+  const cnt=document.getElementById('pCnt');
+  cnt.textContent=partners.length;
+  if(!partners.length){grid.innerHTML='<div class="ap-empty"><div class="ap-empty-ic">👔</div><p>No partners added yet</p></div>';return;}
+  grid.innerHTML=partners.map(p=>`
+    <div class="ap-card">
+      <div class="ap-card-av">${p.photo?`<img src="${p.photo}" onerror="this.style.display='none';this.parentElement.textContent='${p.name[0]}'">`:p.name[0]}</div>
+      <div>
+        <div class="ap-card-name">${p.name}</div>
+        <div class="ap-card-role">${p.role}</div>
+        <div class="ap-card-desc">${[p.exp,p.works].filter(Boolean).join(' · ')}</div>
+      </div>
+      <div class="ap-del-btn" onclick="delPartner(${p.id})">🗑</div>
+    </div>
+  `).join('');
+}
+function renderPartners(){
+  const grid=document.getElementById('partners-grid');
+  if(!partners.length){grid.innerHTML='<div class="no-data">No partners added yet. Use the Admin Panel to add partners.</div>';return;}
+  grid.innerHTML=partners.map(p=>{
+    const tags=p.works?p.works.split(',').map(t=>t.trim()).filter(Boolean):[];
+    return `
+      <div class="partner-card">
+        <div class="p-avatar">${p.photo?`<img src="${p.photo}" onerror="this.style.display='none';this.parentElement.textContent='${p.name[0]}'">`:p.name[0]}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-role">${p.role}</div>
+        ${p.exp?`<div class="p-exp">${p.exp}</div>`:''}
+        <div class="p-tags">${tags.map(t=>`<span class="p-tag">${t}</span>`).join('')}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// ARTICLES ADMIN
+// ══════════════════════════════════════════
+function addArticle(){
+  const n=document.getElementById('aName').value.trim();
+  const w=document.getElementById('aWorks').value.trim();
+  const ph=document.getElementById('aPhoto').value.trim();
+  if(!n){alert('Name is required.');return;}
+  articles.push({id:Date.now(),name:n,works:w,photo:ph});
+  saveAll();renderAdminArticles();renderArticles();
+  ['aName','aWorks','aPhoto'].forEach(id=>document.getElementById(id).value='');
+}
+function delArticle(id){
+  if(!confirm('Delete this articled assistant?')) return;
+  articles=articles.filter(a=>a.id!==id);
+  saveAll();renderAdminArticles();renderArticles();
+}
+function renderAdminArticles(){
+  const grid=document.getElementById('apArticlesGrid');
+  const cnt=document.getElementById('aCnt');
+  cnt.textContent=articles.length;
+  if(!articles.length){grid.innerHTML='<div class="ap-empty"><div class="ap-empty-ic">📚</div><p>No articles added yet</p></div>';return;}
+  grid.innerHTML=articles.map(a=>`
+    <div class="ap-card">
+      <div class="ap-card-av">${a.photo?`<img src="${a.photo}" onerror="this.style.display='none';this.parentElement.textContent='${a.name[0]}'">`:a.name[0]}</div>
+      <div>
+        <div class="ap-card-name">${a.name}</div>
+        <div class="ap-card-role">Articled Assistant</div>
+        <div class="ap-card-desc">${a.works||''}</div>
+      </div>
+      <div class="ap-del-btn" onclick="delArticle(${a.id})">🗑</div>
+    </div>
+  `).join('');
+}
+function renderArticles(){
+  const grid=document.getElementById('articles-grid');
+  if(!articles.length){grid.innerHTML='<div class="no-data">No articled assistants added yet. Use the Admin Panel to add them.</div>';return;}
+  grid.innerHTML=articles.map(a=>`
+    <div class="art-card">
+      <div class="art-av">${a.photo?`<img src="${a.photo}" onerror="this.style.display='none';this.parentElement.textContent='${a.name[0]}'">`:a.name[0]}</div>
+      <div class="art-name">${a.name}</div>
+      <div class="art-role">Articled Assistant</div>
+      <div class="art-work">${a.works||''}</div>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+// WA ADMIN
+// ══════════════════════════════════════════
+function saveWA(){
+  const n=document.getElementById('waNewNum').value.trim().replace(/\D/g,'');
+  const d=document.getElementById('waFmt').value.trim();
+  if(!n){alert('Please enter a valid number.');return;}
+  waNum=n;waDisp=d||('+91 '+n.slice(-10));
+  localStorage.setItem('ca_wa_num',waNum);
+  localStorage.setItem('ca_wa_disp',waDisp);
+  updateWAButtons();
+  const msg=document.getElementById('waSavedMsg');
+  msg.style.display='block';
+  setTimeout(()=>{msg.style.display='none';},3000);
+}
+
+// ══════════════════════════════════════════
+// ADMIN TRIGGERS
+// ══════════════════════════════════════════
+const keysDown=new Set();
+document.addEventListener('keydown',e=>{
+  keysDown.add(e.code);
+  if((keysDown.has('ControlLeft')||keysDown.has('ControlRight')||keysDown.has('MetaLeft')||keysDown.has('MetaRight'))
+    && keysDown.has('ShiftLeft') && keysDown.has('KeyA')){
+    e.preventDefault();
+    if(!isLoggedIn) openAdminModal();
+  }
+  if(e.code==='Escape'){closeAdminModal();if(isLoggedIn)closeAdmin();}
+});
+document.addEventListener('keyup',e=>{keysDown.delete(e.code);});
+
+let tapSeq=0,tapTimer=null;
+const logoEl=document.getElementById('logo-link');
+logoEl.addEventListener('click',e=>{
+  e.preventDefault();
+  tapSeq++;
+  clearTimeout(tapTimer);
+  tapTimer=setTimeout(()=>{
+    if(tapSeq>=5&&!isLoggedIn){openAdminModal();}
+    else{document.getElementById('hero').scrollIntoView({behavior:'smooth'});}
+    tapSeq=0;
+  },700);
+});
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+renderHeroSlides();
+renderPartners();
+renderArticles();
+</script>
+</body>
+</html>
