@@ -38,78 +38,40 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 ::-webkit-scrollbar-track{background:#f0f4f8;}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
 
-/* ─── TOP BAR WITH LOGO ─── */
-.top-bar{
-  background:var(--white);
-  border-bottom:1px solid var(--border);
-  padding:30px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  z-index:100;
-}
-.top-bar-content{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:15px;
-}
-.top-logo{
-  width:400px;
-  height:auto;
-  object-fit:contain;
-}
-.established-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 24px;
-  background:linear-gradient(135deg,var(--navy),var(--blue));
-  color:var(--white);
-  border-radius:30px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  box-shadow:0 4px 15px var(--glow);
-}
-.established-badge::before{
-  content:'●';
-  color:var(--green);
-  font-size:16px;
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1);}
-  50%{opacity:0.6;transform:scale(1.1);}
-}
-
 /* ─── NAV ─── */
 #nav{
-  position:sticky;
+  position:fixed;
   top:0;
   left:0;
   right:0;
   z-index:900;
-  height:64px;
+  height:72px;
   padding:0 5%;
   display:flex;
   align-items:center;
-  justify-content:flex-end;
+  justify-content:space-between;
   transition:all 0.4s ease;
+  background:transparent;
+}
+#nav.solid{
   background:rgba(255,255,255,0.97);
   backdrop-filter:blur(20px);
   box-shadow:0 2px 20px var(--shadow);
+  height:64px;
 }
+#nav.solid .nav-link{color:var(--text2);}
+#nav.solid .nav-link:hover{color:var(--blue);}
+#nav.solid .nav-firm{color:var(--text);}
+#nav.solid .nav-sub{color:var(--blue);}
+#nav.solid .ham span{background:var(--text);}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
 .nav-link{
   font-size:11.5px;letter-spacing:1px;text-transform:uppercase;
-  color:var(--text2);text-decoration:none;
+  color:rgba(255,255,255,0.85);text-decoration:none;
   padding:9px 13px;border-radius:6px;
   transition:all 0.25s ease;font-weight:600;
 }
-.nav-link:hover{color:var(--blue);background:rgba(26,111,181,0.08);}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,0.1);}
 .nav-cta{
   padding:10px 22px!important;
   background:var(--blue)!important;
@@ -120,7 +82,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 }
 .nav-cta:hover{background:var(--navy)!important;transform:translateY(-1px);}
 .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
-.ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s;}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s;}
 .mob-menu{
   display:none;position:fixed;top:64px;inset-inline:0;bottom:0;
   background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);
@@ -183,12 +145,90 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
   left:10%;bottom:10%;
 }
 
+/* ─── HERO LOGO TOP ─── */
+.hero-top{
+  position:relative;z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:100px 5% 20px;
+  gap:16px;
+}
+.hero-top-logo{
+  width:280px;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.hero-top-logo-text{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 24px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;
+}
+.hero-top-ca{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  font-weight:800;
+  color:var(--white);
+  line-height:1;
+}
+.hero-top-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.hero-top-firm{
+  font-family:'Cinzel',serif;
+  font-size:16px;
+  font-weight:700;
+  color:var(--white);
+  letter-spacing:0.5px;
+}
+.hero-top-sub{
+  font-size:8px;
+  color:rgba(255,255,255,0.7);
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+}
+.hero-top-established{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 22px;
+  background:linear-gradient(135deg,rgba(26,111,181,0.9),rgba(11,37,69,0.9));
+  border:1px solid rgba(79,168,232,0.3);
+  color:var(--white);
+  border-radius:30px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+}
+.hero-top-established::before{
+  content:'';
+  width:8px;height:8px;
+  background:#4ade80;
+  border-radius:50%;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:0.5;transform:scale(1.3);}
+}
+
 /* Hero content */
 .hero-content{
   position:relative;z-index:3;
-  flex:1;display:flex;align-items:center;
+  flex:1;display:flex;align-items:flex-end;
   max-width:1260px;margin:0 auto;width:100%;
-  padding:80px 5% 80px;
+  padding:30px 5% 80px;
 }
 .hero-left{max-width:680px;}
 .hero-eyebrow{
@@ -352,7 +392,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 .d5{transition-delay:.5s!important}
 .d6{transition-delay:.6s!important}
 
-/* ─── ABOUT ─── */
+/* ─── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;max-width:1260px;margin:0 auto;}
 .about-visual{}
 .about-img-stack{position:relative;}
@@ -364,10 +404,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
   display:flex;align-items:center;justify-content:center;
 }
 .about-img-main img{width:100%;height:100%;object-fit:contain;padding:20px;}
-.about-img-placeholder{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:12px;color:var(--text3);padding:40px;text-align:center;
-}
 .about-firm-card{
   position:absolute;bottom:-28px;right:-28px;
   background:var(--white);border-radius:16px;
@@ -404,7 +440,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 .af-icon{width:36px;height:36px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 .af-text{font-size:12.5px;font-weight:600;color:var(--text);}
 
-/* ─── SERVICES ─ */
+/* ─── SERVICES ─── */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1260px;margin:0 auto;}
 .svc-card{
   background:var(--white);border:1px solid var(--border);
@@ -449,7 +485,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
   border:1px solid rgba(26,111,181,0.18);
 }
 
-/* ─── STATS ─── */
+/* ─── STATS ── */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1260px;margin:0 auto;}
 .stat-card{
   text-align:center;padding:50px 24px;
@@ -556,7 +592,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 .why-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:7px;}
 .why-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;}
 
-/* ─── CONTACT ── */
+/* ─── CONTACT ─── */
 .contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:50px;align-items:start;max-width:1260px;margin:0 auto;}
 .ct-items{}
 .ct-item{
@@ -614,7 +650,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 }
 .cf-submit:hover{background:var(--blue);transform:translateY(-1px);box-shadow:0 7px 22px var(--glow);}
 
-/* ─── FOOTER ─── */
+/* ─── FOOTER ── */
 footer{
   background:var(--navy);color:var(--white);
   padding:64px 5% 26px;
@@ -853,9 +889,9 @@ footer{
 .wa-save-btn:hover{background:#16a34a;transform:translateY(-1px);}
 .wa-saved-msg{display:none;margin-top:9px;padding:9px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;font-size:12.5px;font-weight:600;color:#16a34a;text-align:center;}
 
-/* ─── RESPONSIVE ─── */
+/* ── RESPONSIVE ─── */
 @media(max-width:1060px){
-  .top-logo{width:300px;}
+  .hero-top-logo{width:220px;}
   .about-grid{grid-template-columns:1fr;gap:44px;}
   .svc-grid{grid-template-columns:repeat(2,1fr);}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
@@ -866,13 +902,16 @@ footer{
   .blog-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:768px){
-  .top-logo{width:250px;}
-  .established-badge{font-size:10px;padding:6px 16px;}
+  .hero-top-logo{width:180px;}
+  .hero-top{padding:85px 5% 15px;gap:12px;}
+  .hero-top-ca{font-size:28px;}
+  .hero-top-firm{font-size:13px;}
+  .hero-top-established{font-size:10px;padding:6px 16px;}
   nav,.nav-links{display:none;}
   #nav .nav-links{display:none;}
   .ham{display:flex;}
   .sp{padding:64px 5%;}
-  .hero-content{padding:110px 5% 70px;}
+  .hero-content{padding:20px 5% 70px;}
   .svc-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:1fr 1fr;}
   .hero-stats{flex-wrap:wrap;gap:0;}
@@ -900,16 +939,9 @@ footer{
 </head>
 <body>
 
-<!-- TOP BAR WITH LOGO -->
-<div class="top-bar">
-  <div class="top-bar-content">
-    <img src="logo.png" alt="Chetan Agarwal & Co. - Chartered Accountants" class="top-logo">
-    <div class="established-badge">Established 2000</div>
-  </div>
-</div>
-
-<!-- NAV -->
+<!-- NAV (fixed, transparent over hero) -->
 <nav id="nav">
+  <div style="width:80px;"></div>
   <ul class="nav-links">
     <li><a href="#about" class="nav-link">About</a></li>
     <li><a href="#services" class="nav-link">Services</a></li>
@@ -943,6 +975,21 @@ footer{
   </div>
   <div class="hero-overlay" id="heroOverlay"></div>
   <div class="hero-bottom-grad"></div>
+
+  <!-- LOGO AT TOP OF HERO (no white space) -->
+  <div class="hero-top">
+    <img src="logo.png" alt="Chetan Agarwal & Co." class="hero-top-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="hero-top-logo-text" style="display:none;">
+      <div class="hero-top-ca">CA</div>
+      <div class="hero-top-text">
+        <span class="hero-top-firm">CHETAN AGARWAL & CO.</span>
+        <span class="hero-top-sub">CHARTERED ACCOUNTANTS</span>
+      </div>
+    </div>
+    <div class="hero-top-established">Established 2000</div>
+  </div>
+
+  <!-- Hero content -->
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-eyebrow">
@@ -950,7 +997,7 @@ footer{
         <span class="hero-eyebrow-text">Jamnagar & Ahmedabad</span>
       </div>
       <h1 class="hero-title">
-        Four Decades of<br>
+        Over Two Decades of<br>
         <em class="ht-em">Financial Wisdom</em>
       </h1>
       <div class="hero-tagline">Chetan Agarwal & Co. — Chartered Accountants</div>
@@ -961,7 +1008,7 @@ footer{
       </div>
       <div class="hero-stats">
         <div class="hs">
-          <div class="hs-n"><span class="counter" data-target="44">0</span><span class="hs-suf">+</span></div>
+          <div class="hs-n"><span class="counter" data-target="26">0</span><span class="hs-suf">+</span></div>
           <div class="hs-l">Years</div>
         </div>
         <div class="hs">
@@ -995,7 +1042,7 @@ footer{
     <span>Company Compliance</span><span class="accent">★</span>
     <span>Financial Advisory</span><span class="accent">★</span>
     <span>ICAI Registered Firm</span><span class="accent">★</span>
-    <span>44+ Years of Excellence</span><span class="accent">★</span>
+    <span>26+ Years of Excellence</span><span class="accent">★</span>
     <span>Jamnagar & Ahmedabad</span><span class="accent">★</span>
     <!-- duplicate for seamless loop -->
     <span>GST Advisory</span><span class="accent">★</span>
@@ -1004,7 +1051,7 @@ footer{
     <span>Company Compliance</span><span class="accent">★</span>
     <span>Financial Advisory</span><span class="accent">★</span>
     <span>ICAI Registered Firm</span><span class="accent">★</span>
-    <span>44+ Years of Excellence</span><span class="accent">★</span>
+    <span>26+ Years of Excellence</span><span class="accent">★</span>
     <span>Jamnagar & Ahmedabad</span><span class="accent">★</span>
   </div>
 </div>
@@ -1015,10 +1062,10 @@ footer{
     <div class="about-visual rv-l">
       <div class="about-img-stack">
         <div class="about-img-main">
-          <img src="logo.png" alt="Chetan Agarwal & Co" style="width:100%;height:100%;object-fit:contain;padding:20px;">
+          <img src="logo.png" alt="Chetan Agarwal & Co" style="width:100%;height:100%;object-fit:contain;padding:20px;" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=padding:20px;text-align:center><b style=color:var(--navy);font-size:20px>CA</b><br><span style=font-size:12px>CHETAN AGARWAL & CO.</span></div>';">
         </div>
         <div class="about-badge">
-          <div class="ab-num">44</div>
+          <div class="ab-num">26</div>
           <div class="ab-text">Years</div>
         </div>
         <div class="about-firm-card">
@@ -1040,8 +1087,8 @@ footer{
         <div class="af"><div class="af-icon">🔒</div><div class="af-text">Client Confidentiality</div></div>
         <div class="af"><div class="af-icon">📊</div><div class="af-text">Expert Team</div></div>
         <div class="af"><div class="af-icon">⚡</div><div class="af-text">Timely Delivery</div></div>
-        <div class="af"><div class="af-icon">🌐</div><div class="af-text">Two Locations</div></div>
-        <div class="af"><div class="af-icon">💼</div><div class="af-text">44+ Years Experience</div></div>
+        <div class="af"><div class="af-icon"></div><div class="af-text">Two Locations</div></div>
+        <div class="af"><div class="af-icon">💼</div><div class="af-text">26+ Years Experience</div></div>
       </div>
     </div>
   </div>
@@ -1074,7 +1121,7 @@ footer{
       <h2 class="sec-title">Numbers That <span class="it">Speak</span></h2>
     </div>
     <div class="stats-grid">
-      <div class="stat-card rv d1"><span class="stat-ic">🏛️</span><div class="stat-n"><span class="counter" data-target="44">0</span><span class="stat-s">+</span></div><div class="stat-l">Years of Excellence</div></div>
+      <div class="stat-card rv d1"><span class="stat-ic">🏛️</span><div class="stat-n"><span class="counter" data-target="26">0</span><span class="stat-s">+</span></div><div class="stat-l">Years of Excellence</div></div>
       <div class="stat-card rv d2"><span class="stat-ic">👥</span><div class="stat-n"><span class="counter" data-target="500">0</span><span class="stat-s">+</span></div><div class="stat-l">Satisfied Clients</div></div>
       <div class="stat-card rv d3"><span class="stat-ic">📍</span><div class="stat-n"><span class="counter" data-target="2">0</span></div><div class="stat-l">Office Locations</div></div>
       <div class="stat-card rv d4"><span class="stat-ic">📋</span><div class="stat-n"><span class="counter" data-target="1000">0</span><span class="stat-s">+</span></div><div class="stat-l">Returns Filed</div></div>
@@ -1176,9 +1223,9 @@ footer{
   <div class="ft-grid">
     <div class="ft-brand">
       <div class="ft-logo-row">
-        <img class="ft-logo-img" src="logo.png" alt="Chetan Agarwal & Co">
+        <img class="ft-logo-img" src="logo.png" alt="Chetan Agarwal & Co" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=color:var(--white);font-family:Cinzel;font-size:14px>CHETAN AGARWAL & CO.</span>';">
       </div>
-      <p class="ft-desc">Four decades of trusted financial expertise. Serving clients across Jamnagar, Ahmedabad, and beyond with integrity.</p>
+      <p class="ft-desc">Over two decades of trusted financial expertise. Serving clients across Jamnagar, Ahmedabad, and beyond with integrity.</p>
       <div class="ft-socials">
         <a href="mailto:chetanagarwalandco@gmail.com" class="ft-soc">📧</a>
         <a id="footerWa" href="#" target="_blank" class="ft-soc">💬</a>
@@ -1229,7 +1276,7 @@ footer{
 <div id="admin-modal">
   <div class="adm-box">
     <div class="adm-x" onclick="closeAdminModal()">✕</div>
-    <div class="adm-icon">🔐</div>
+    <div class="adm-icon"></div>
     <div class="adm-title">Admin Access</div>
     <div class="adm-sub">Enter your credentials to continue</div>
     <input type="text" class="adm-inp" id="adUser" placeholder="Username" autocomplete="off">
@@ -1285,7 +1332,7 @@ footer{
       <div class="ap-sec-title">Manage Partners</div>
       <div class="ap-sec-sub">Add or remove partner profiles. Changes appear instantly on the website.</div>
       <div class="ap-form-box">
-        <h4>➕ Add New Partner</h4>
+        <h4> Add New Partner</h4>
         <div class="ap-row">
           <div class="ap-iw"><label>Full Name *</label><input type="text" id="pName" placeholder="CA Full Name"></div>
           <div class="ap-iw"><label>Role / Designation *</label><input type="text" id="pRole" placeholder="e.g. Managing Partner"></div>
@@ -1622,7 +1669,7 @@ function renderAdminSlides(){
       <div class="hsa-info">
         <div class="hsa-type">${s.type==='video'?'🎥 Video':'️ Image'}${s.caption?' · '+s.caption:''}</div>
         <div class="hsa-url">${s.url.length>60?s.url.slice(0,60)+'...':s.url}</div>
-        ${s.link?`<div class="hsa-link-text">🔗 "${s.linkText||'Read More'}" → ${s.link.length>50?s.link.slice(0,50)+'...':s.link}</div>`:'<div class="hsa-link-text" style="color:var(--text3);">No read-more link set</div>'}
+        ${s.link?`<div class="hsa-link-text"> "${s.linkText||'Read More'}" → ${s.link.length>50?s.link.slice(0,50)+'...':s.link}</div>`:'<div class="hsa-link-text" style="color:var(--text3);">No read-more link set</div>'}
         <div class="hsa-actions">
           <span class="hsa-order">Slide #${i+1}</span>
           <button class="hsa-toggle ${s.active?'on':'off'}" onclick="toggleHeroSlide(${s.id})">${s.active?'✓ Active':'○ Inactive'}</button>
@@ -1633,7 +1680,7 @@ function renderAdminSlides(){
   `).join('');
 }
 
-// ══════════════════════════════════════════
+// ═════════════════════════════════════════
 // PARTNERS ADMIN
 // ══════════════════════════════════════════
 function addPartner(){
@@ -1665,7 +1712,7 @@ function renderAdminPartners(){
         <div class="ap-card-role">${p.role}</div>
         <div class="ap-card-desc">${[p.exp,p.works].filter(Boolean).join(' · ')}</div>
       </div>
-      <div class="ap-del-btn" onclick="delPartner(${p.id})">🗑</div>
+      <div class="ap-del-btn" onclick="delPartner(${p.id})"></div>
     </div>
   `).join('');
 }
@@ -1765,7 +1812,7 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('keyup',e=>{keysDown.delete(e.code);});
 
 let tapSeq=0,tapTimer=null;
-const logoEl=document.querySelector('.top-logo');
+const logoEl=document.querySelector('.hero-top-logo');
 logoEl.addEventListener('click',e=>{
   tapSeq++;
   clearTimeout(tapTimer);
